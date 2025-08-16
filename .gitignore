@@ -1,0 +1,6 @@
+# VS Code settings
+.vscode/
+
+# Local folders to ignore
+_footage/
+_BAKUPS/
