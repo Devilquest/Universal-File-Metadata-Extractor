@@ -1,0 +1,30 @@
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "What is file metadata?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "File metadata is information stored within a file that describes various properties about the file itself, such as creation date, author, camera settings for images, audio bitrate, and more."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Is this metadata extractor free to use?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, our metadata extractor is completely free to use with no limitations. All processing happens in your browser, ensuring privacy and security."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What file types are supported?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Our tool supports all file types including images (JPEG, PNG, GIF, WEBP), audio (MP3, WAV, FLAC), video (MP4, AVI, MOV), documents (PDF, DOCX, XLSX), and archives (ZIP, RAR)."
+            }
+        }
+    ]
+}

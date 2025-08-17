@@ -1,0 +1,31 @@
+{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Universal File Metadata Extractor",
+    "description": "Free online tool to extract and view metadata from any file type including images, audio, video, documents and archives",
+    "url": "https://metadataviewer.ct.ws/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+    },
+    "featureList": [
+        "Extract EXIF data from images",
+        "Read ID3 tags from audio files",
+        "View PDF metadata and properties",
+        "Analyze video file information",
+        "Support for all file types",
+        "100% client-side processing",
+        "No file upload required",
+        "Privacy-focused tool",
+        "Export to JSON and CSV"
+    ],
+    "screenshot": "https://metadataviewer.ct.ws/images/share-image.png",
+    "softwareVersion": "1.0.0",
+    "author": {
+        "@type": "Organization",
+        "name": "Universal File Metadata Extractor"
+    }
+}

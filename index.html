@@ -24,15 +24,16 @@
     <meta property="og:site_name" content="Universal File Metadata Extractor">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://metadataviewer.ct.ws/">
-    <meta property="twitter:title" content="File Metadata Extractor Online - Free Universal Metadata Viewer">
-    <meta property="twitter:description" content="Extract metadata from any file type instantly. Support for images, audio, video, documents, archives. 100% free and private.">
-    <meta property="twitter:image" content="https://metadataviewer.ct.ws/images/share-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://metadataviewer.ct.ws/">
+    <meta name="twitter:title" content="File Metadata Extractor Online - Free Universal Metadata Viewer">
+    <meta name="twitter:description" content="Extract metadata from any file type instantly. Support for images, audio, video, documents, archives. 100% free and private.">
+    <meta name="twitter:image" content="https://metadataviewer.ct.ws/images/share-image.png">
+    <meta name="twitter:site" content="@Devilquest666">
 
-    <!-- Performance & Security -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Additional / Optional -->
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -40,90 +41,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="styles/style.css">
 
-    <!-- Structured Data / Schema.org -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Universal File Metadata Extractor",
-        "description": "Free online tool to extract and view metadata from any file type including images, audio, video, documents and archives",
-        "url": "https://metadataviewer.ct.ws/",
-        "applicationCategory": "UtilityApplication",
-        "operatingSystem": "Any",
-        "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-        },
-        "featureList": [
-        "Extract EXIF data from images",
-        "Read ID3 tags from audio files",
-        "View PDF metadata and properties",
-        "Analyze video file information",
-        "Support for all file types",
-        "100% client-side processing",
-        "No file upload required",
-        "Privacy-focused tool",
-        "Export to JSON and CSV"
-        ],
-        "screenshot": "https://metadataviewer.ct.ws/images/share-image.png",
-        "softwareVersion": "1.0.0",
-        "author": {
-        "@type": "Organization",
-        "name": "Universal File Metadata Extractor"
-        }
-    }
-    </script>
-
-    <!-- FAQ Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-        {
-            "@type": "Question",
-            "name": "What is file metadata?",
-            "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "File metadata is information stored within a file that describes various properties about the file itself, such as creation date, author, camera settings for images, audio bitrate, and more."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "Is this metadata extractor free to use?",
-            "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, our metadata extractor is completely free to use with no limitations. All processing happens in your browser, ensuring privacy and security."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "What file types are supported?",
-            "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Our tool supports all file types including images (JPEG, PNG, GIF, WEBP), audio (MP3, WAV, FLAC), video (MP4, AVI, MOV), documents (PDF, DOCX, XLSX), and archives (ZIP, RAR)."
-            }
-        }
-        ]
-    }
-    </script>
-
-    <!-- Breadcrumb Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://metadataviewer.ct.ws/"
-            }
-        ]
-    }
-    </script>
+    <!-- Structured Data / Schema.org External -->
+    <script type="application/ld+json" src="schemas/webapp.json"></script>
+    <script type="application/ld+json" src="schemas/faq.json"></script>
+    <script type="application/ld+json" src="schemas/breadcrumb.json"></script>
 
     <script src="scripts/main.js" defer></script>
 </head>
