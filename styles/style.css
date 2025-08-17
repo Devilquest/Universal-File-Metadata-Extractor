@@ -21,6 +21,10 @@ body {
     background-size: cover;
 }
 
+a {
+    transition: color ease-in 0.15s;
+}
+
 .content {
     flex: 1;
 }
@@ -577,7 +581,6 @@ footer p a{
     font-weight: 600;
     text-decoration: none;
     color: #DDD;
-    transition: color ease-in 0.15s;
 }
 
 footer p a:hover{
