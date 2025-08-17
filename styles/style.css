@@ -78,6 +78,7 @@ body {
 .header h1 img{
     width: 60px;
     vertical-align: bottom;
+    animation: float 5s ease-in-out infinite;
 }
 
 .header p {
