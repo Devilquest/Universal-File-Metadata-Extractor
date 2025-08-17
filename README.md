@@ -3,7 +3,7 @@
 
 **Try it online:** [metadataviewer.ct.ws](https://metadataviewer.ct.ws) - *no installation required, works entirely in your browser.*
 
-A universal online tool to extract metadata from images (EXIF), audio (ID3), video, PDFs, documents, and more. Processing is 100% client-side to ensure privacy — no upload required.
+A universal online tool to extract metadata from images (EXIF), audio (ID3), video, PDFs, documents, and more. Everything is processed locally in your browser; no files are ever uploaded to any server, guaranteeing complete privacy and security.
 
 ## Features
 
@@ -20,7 +20,8 @@ A universal online tool to extract metadata from images (EXIF), audio (ID3), vid
     - **Raw JSON**: View the complete metadata in JSON format.
     - **Hex View**: Analyze the first bytes of the file in a hexadecimal view.
 - **Export Metadata**: Download the extracted metadata as a JSON or CSV file for further analysis.
-- **Modern Design**: A clean and responsive user interface with a dark theme.
+- **Modern Design**: A clean and responsive user interface.
+- **Scroll-to-top button**: Quickly return to the top of the page.
 
 ## How to Use
 
@@ -33,7 +34,7 @@ A universal online tool to extract metadata from images (EXIF), audio (ID3), vid
 ## Technologies Used
 
 - **HTML5**: For the structure of the web application.
-- **CSS3**: For styling and layout, including a responsive design and a dark theme.
+- **CSS3**: For styling, layout, and responsive design capabilities.
 - **Vanilla JavaScript**: For all the application logic, including:
     - File parsing and metadata extraction.
     - DOM manipulation.
