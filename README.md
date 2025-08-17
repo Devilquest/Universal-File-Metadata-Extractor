@@ -3,7 +3,7 @@
 
 **Try it online:** [metadataviewer.ct.ws](https://metadataviewer.ct.ws) - *no installation required, works entirely in your browser.*
 
-A universal online tool to extract metadata from images (EXIF), audio (ID3), video, PDFs, documents, and more. Processing is 100% client-side to ensure privacy — no upload required.
+A universal online tool to extract metadata from images (EXIF), audio (ID3), video, PDFs, documents, and more. Everything is processed locally in your browser; no files are ever uploaded to any server, guaranteeing complete privacy and security.
 
 ## Features
 
