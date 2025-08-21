@@ -2,7 +2,7 @@
 const TEXTS = {
     binaryInformation: 'Binary Information',
     fileHeaderLabel: 'File header',
-    experimentalPromptLabel: '[Experimental] Prompt Text',
+    experimentalPromptLabel: '[Exp] P.Text', //[Experimental] Prompt Text
     first16BytesLabel: 'First 16 bytes (hex)',
 };
 
@@ -458,7 +458,7 @@ class UniversalMetadataExtractor {
 
     parsePNGChunks(view) {
         const metadata = {};
-        let text285 = null;
+        let extrectedPrompts = null;
         let offset = 8; // Skip PNG signature
 
         while (offset < view.byteLength - 8) {
@@ -468,43 +468,21 @@ class UniversalMetadataExtractor {
             if (type === 'tEXt' || type === 'iTXt' || type === 'zTXt') {
                 const textData = new Uint8Array(view.buffer, offset + 8, length);
                 const textStr = new TextDecoder('utf-8').decode(textData);
-
                 if (type === 'tEXt') {
                     const nullIndex = textStr.indexOf('\0');
                     if (nullIndex !== -1) {
                         const key = textStr.substring(0, nullIndex);
                         const value = textStr.substring(nullIndex + 1);
                         metadata[key] = value;
-
-                        // Try to parse JSON to extract block 285 ------- Experimental
-                        try {
-                            const parsed = JSON.parse(value);
-                            if (parsed && parsed["285"] && parsed["285"].inputs?.text) {
-                                text285 = parsed["285"].inputs.text;
-                            }
-                        } catch (e) {
-                            // Ignore non-JSON values
-                        }
-                        //----------------------------------------------- Experimental
                     }
                 } else if (type === 'iTXt') {
                     const parts = textStr.split('\0');
                     if (parts.length >= 2) {
                         metadata[parts[0]] = parts[parts.length - 1];
-
-                        // Try to parse JSON to extract block 285 ------- Experimental
-                        try {
-                            const parsed = JSON.parse(parts[parts.length - 1]);
-                            if (parsed && parsed["285"] && parsed["285"].inputs?.text) {
-                                text285 = parsed["285"].inputs.text;
-                            }
-                        } catch (e) {
-                            // Ignore non-JSON values
-                        }
-                        //----------------------------------------------- Experimental
                     }
                 }
             }
+
 
             offset += 12 + length; // 4 bytes length + 4 bytes type + data + 4 bytes CRC
 
@@ -520,11 +498,18 @@ class UniversalMetadataExtractor {
             metadata['Image Size'] = `${width}x${height}`;
         }
 
+        extrectedPrompts = this.extractTextsFromJSON(metadata.prompt);
+
         // Rebuild metadata to ensure MetadataText285 is in second position ------- Experimental
         const newMetadata = {};
 
-        if (text285) {
-            newMetadata['[Experimental] Prompt Text'] = text285;
+        if (extrectedPrompts) {
+            for (let i = 0; i < extrectedPrompts.length; i++) {
+                const prompt = extrectedPrompts[i];
+                
+                newMetadata[TEXTS.experimentalPromptLabel + ` - ${i+1}`] = prompt;
+            }
+
         }
 
         for (const key in metadata) {
@@ -534,6 +519,32 @@ class UniversalMetadataExtractor {
 
         return newMetadata;
     }
+
+    //----------------------------------------------- Experimental
+    extractTextsFromJSON(jsonString) {
+        const results = [];
+        try {
+            const parsed = JSON.parse(jsonString);
+            for (const nodeId in parsed) {
+                const node = parsed[nodeId];
+                if (node && node.class_type) {
+                    const classType = node.class_type;
+                    if (classType.includes("CLIPTextEncode") || classType.includes("TextBox")) {
+                        const texts = [node.inputs?.text, node.inputs?.text1];
+                        texts.forEach(value => {
+                            if (value && value.length > 3) {
+                                results.push(value);
+                            }
+                        });
+                    }
+                }
+            }
+        } catch (e) {
+            // Ignore non-JSON values
+        }
+        return results;
+    }
+    //----------------------------------------------- Experimental
 
     parseJPEGSegments(view) {
         const metadata = {};
@@ -801,7 +812,7 @@ class UniversalMetadataExtractor {
                     const isLong = (value && value.length > 100) || SPECIAL_KEYS.includes(key);
                     html += `
                                 <tr>
-                                    <td class="metadata-key">${this.escapeHtml(key)}</td>
+                                    <td class="metadata-key">${this.formatKey(key)}</td>
                                     <td class="metadata-value">
                                         <div ${isLong ? 'class="long-value"' : ''}>${this.escapeHtml(value)}</div>
                                     </td>
@@ -945,6 +956,15 @@ class UniversalMetadataExtractor {
         const div = document.createElement('div');
         div.textContent = text.toString();
         return div.innerHTML;
+    }
+
+    capitalizeFirstLetter(str) {
+        if (!str) return "";
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    formatKey(key) {
+        return this.capitalizeFirstLetter(this.escapeHtml(key));
     }
 }
 
