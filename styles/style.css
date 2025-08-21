@@ -4,7 +4,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -57,7 +58,7 @@ a {
     width: 200%;
     height: 200%;
     background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-    animation: shimmer 3s infinite;
+    animation: shimmer 8s infinite;
 }
 
 @keyframes shimmer {
@@ -65,8 +66,12 @@ a {
         transform: rotate(0deg);
     }
 
+    37.5% {
+        transform: rotate(360deg); /* end of the spin at 3s */
+    }
+
     100% {
-        transform: rotate(360deg);
+        transform: rotate(360deg); /* stays still during the pause */
     }
 }
 
@@ -79,7 +84,7 @@ a {
     user-select: none;
 }
 
-.header h1 img{
+.header h1 img {
     width: 60px;
     vertical-align: bottom;
     animation: float 5s ease-in-out infinite;
@@ -155,12 +160,12 @@ a {
 }
 
 .upload-icon {
-	margin: 0 auto;
-	margin-bottom: 20px;
-	width: 100px;
-	animation: float 3s ease-in-out infinite;
-	user-select: none;
-	color: #776FBF;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 100px;
+    animation: float 3s ease-in-out infinite;
+    user-select: none;
+    color: #776FBF;
 }
 
 @keyframes float {
@@ -560,28 +565,28 @@ a {
     font-size: 2rem;
 }
 
-footer{
+footer {
     margin-top: 35px;
     padding: 10px;
     padding-bottom: 20px;
     text-align: center;
 }
 
-footer p{
+footer p {
     color: #DDD;
 }
 
-footer p span{
+footer p span {
     color: red;
 }
 
-footer p a{
+footer p a {
     font-weight: 600;
     text-decoration: none;
     color: #DDD;
 }
 
-footer p a:hover{
+footer p a:hover {
     color: #00E143;
 }
 
