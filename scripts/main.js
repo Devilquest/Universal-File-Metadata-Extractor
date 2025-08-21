@@ -483,7 +483,6 @@ class UniversalMetadataExtractor {
                 }
             }
 
-
             offset += 12 + length; // 4 bytes length + 4 bytes type + data + 4 bytes CRC
 
             if (type === 'IEND') break;
@@ -506,8 +505,8 @@ class UniversalMetadataExtractor {
         if (extrectedPrompts) {
             for (let i = 0; i < extrectedPrompts.length; i++) {
                 const prompt = extrectedPrompts[i];
-                
-                newMetadata[TEXTS.experimentalPromptLabel + ` - ${i+1}`] = prompt;
+
+                newMetadata[TEXTS.experimentalPromptLabel + ` - ${i + 1}`] = prompt;
             }
 
         }
