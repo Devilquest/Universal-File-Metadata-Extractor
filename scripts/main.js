@@ -458,7 +458,6 @@ class UniversalMetadataExtractor {
 
     parsePNGChunks(view) {
         const metadata = {};
-        let extrectedPrompts = null;
         let offset = 8; // Skip PNG signature
 
         while (offset < view.byteLength - 8) {
@@ -497,29 +496,34 @@ class UniversalMetadataExtractor {
             metadata['Image Size'] = `${width}x${height}`;
         }
 
-        extrectedPrompts = this.extractTextsFromJSON(metadata.prompt);
+        const finalMetadata = this.buildNewMetadata(metadata, this.extractTextsFromJSON(metadata.prompt));
 
-        // Rebuild metadata to ensure MetadataText285 is in second position ------- Experimental
-        const newMetadata = {};
+        return finalMetadata || metadata;
+    }
 
-        if (extrectedPrompts) {
-            for (let i = 0; i < extrectedPrompts.length; i++) {
-                const prompt = extrectedPrompts[i];
-
-                newMetadata[TEXTS.experimentalPromptLabel + ` - ${i + 1}`] = prompt;
-            }
-
+    //------------------------------------------------------------------------------------------------------------ Experimental
+    buildNewMetadata(metadata, extractedPrompts) {
+        // If no prompts, return null to indicate "use original metadata"
+        if (!extractedPrompts || extractedPrompts.length === 0) {
+            return null;
         }
 
+        const newMetadata = {};
+
+        // Add extracted prompts
+        for (let i = 0; i < extractedPrompts.length; i++) {
+            const prompt = extractedPrompts[i];
+            newMetadata[TEXTS.experimentalPromptLabel + ` - ${i + 1}`] = prompt;
+        }
+
+        // Merge original metadata
         for (const key in metadata) {
             newMetadata[key] = metadata[key];
         }
-        //----------------------------------------------- Experimental
 
         return newMetadata;
     }
 
-    //----------------------------------------------- Experimental
     extractTextsFromJSON(jsonString) {
         const results = [];
         try {
@@ -543,7 +547,7 @@ class UniversalMetadataExtractor {
         }
         return results;
     }
-    //----------------------------------------------- Experimental
+    //------------------------------------------------------------------------------------------------------------ Experimental
 
     parseJPEGSegments(view) {
         const metadata = {};
